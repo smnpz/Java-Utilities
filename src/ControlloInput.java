@@ -3,209 +3,245 @@ import java.io.InputStreamReader;
 
 public class ControlloInput {
 
-    private int intero;
-    private float virgola1;
-    private double virgola2;
-    private String stringa;
-    private Boolean bool;
-    private char carattere;
+    //oggetti input
+    static InputStreamReader input = new InputStreamReader(System.in);
+    static BufferedReader tastiera = new BufferedReader(input);
 
-    //metodi stringhe
-    public void setStringa(String s) {
-        stringa = s;
+    private int intero;
+    private double reale;
+    private String stringa;
+
+    // METODI per le STRINGHE
+    private void setStringa(String stringa) {
+        this.stringa = stringa;
     }
 
-    public String getStringa() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
-
-        boolean err = false;
+    //metodo input stringa generica
+    public String inputStringa() {
+        
+        boolean error = false;
 
         do {
             try {
                 setStringa(tastiera.readLine());
-                err = false;
+                error = false;
             } catch (Exception e) {
-                System.out.println("errore");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
         return stringa;
     }
 
-    public String getStringaLetterale() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
+    //metodo input stringa letterale
+    public String inputStringaLetterale() {
 
-        boolean err = false;
+        boolean error = false;
 
         do {
             try {
                 setStringa(tastiera.readLine());
-                err = false;
+                error = false;
 
+                //for per scorrerela stringa
                 for (int i = 0; i < stringa.length(); i++) {
                     char c = stringa.charAt(i);
                     if (!Character.isLetter(c)) {
-                        System.out.print("la stringa inserita contiene dei caratteri non validi, riprova: ");
-                        err = true;
+                        System.out.print("Errore | La stringa contiene caratteri non validi [a/A - z/Z].\nRiprova: ");
+                        error = true;
                     }
                 }
 
             } catch (Exception e) {
-                System.out.println("errore");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
         return stringa;
     }
 
-    //metodi interi
-    public void setIntero(int i) {
-        intero = i;
+    //metodo booleano scelta binaria (x y)
+    public String inputScelta(String x, String y) {
+
+        boolean error = false;
+
+        do {
+            try {
+                setStringa(tastiera.readLine());
+
+                if (!stringa.equals(x) || !stringa.equals(y)) error = false;
+                else {
+                    System.out.print("Errore | Scelta non contemplata [" + x + "/" + y + "].\nRiprova: ");
+                    error = true;
+                }
+
+            } catch (Exception e) {
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
+            }
+        } while (error);
+
+        return stringa;
     }
 
-    public int getIntero() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
+    // METODI per gli INTERI
+    public void setIntero(int intero) {
+        this.intero = intero;
+    }
 
-        boolean err = false;
+    public int inputIntero() {
+
+        boolean error = false;
 
         do {
             try {
                 setIntero(Integer.valueOf(tastiera.readLine()));
-                err = false;
+                error = false;
             } catch (Exception e) {
-                System.out.println("errore");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
         return intero;
     }
 
-    public int getInteroRange(int min, int max) {
-        //oggetti input
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
+    //metodo intero in un range
+    public int inputInteroRange(int min, int max) {
 
-        //variabili locali
-        boolean err = false;
+        boolean error = false;
 
         do {
             try {
                 setIntero(Integer.valueOf(tastiera.readLine()));
 
-                //controllo se é troppo piccolo
                 if (intero < min || intero > max) {
-                    System.out.print("il numero inserito non rientra nel range [" + min + "]-" + "[" + max + "] | Riprova:");
-                    err = true;
-                } else err = false;
+                    System.out.print("Errore | Il numero inserito non rientra nel range [" + min + " - " + max + "].\nRiprova:");
+                    error = true;
+                } else error = false;
 
             } catch (Exception e) {
-                System.out.print("input non valido | Riprova: ");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
         return intero;
     }
 
-    public int getInteroPositivo() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
+    //metodo numeri interi positivi
+    public int inputInteroPositivo() {
 
-        boolean err = false;
+        boolean error = false;
 
         do {
             try {
                 setIntero(Integer.valueOf(tastiera.readLine()));
-                err = false;
+                error = false;
 
                 if (intero < 0) {
-                    System.out.print("numero negativo non valido, riprova: ");
-                    err = true;
+                    System.out.print("Errore | Numero negativo non valido.\nRiprova: ");
+                    error = true;
                 }
             } catch (Exception e) {
-                System.out.print("errore, inserire un input valido: ");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
         return intero;
     }
 
-    //metodi double
-    public void setDouble(double d) {
-        this.virgola2 = d;
-    }
+    //metodo numeri interi negativi
+    public int inputInteroNegativo() {
 
-    public double getDouble() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
-
-        boolean err = false;
+        boolean error = false;
 
         do {
             try {
-                setDouble(Double.valueOf(tastiera.readLine()));
-                err = false;
-            } catch (Exception e) {
-                System.out.print("errore | riprova:");
-                err = true;
-            }
-        } while (err);
+                setIntero(Integer.valueOf(tastiera.readLine()));
+                error = false;
 
-        return virgola2;
-    }
-
-    public double getDoublePositivo() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
-
-        boolean err = false;
-
-        do {
-            try {
-                setDouble(Double.valueOf(tastiera.readLine()));
-                err = false;
-
-                if (virgola2 < 0) {
-                    System.out.print("numero negativo non valido | riprova: ");
-                    err = true;
+                if (intero > 0) {
+                    System.out.print("Errore | Numero positivo non valido.\nRiprova: ");
+                    error = true;
                 }
             } catch (Exception e) {
-                System.out.print("errore | inserire un input valido: ");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
-        return virgola2;
+        return intero;
     }
 
-    //metodi booleani
-    public void setBool(boolean b) {
-        bool = b;
+    // METODI per i DOUBLE
+    public void setDouble(double reale) {
+        this.reale = reale;
     }
 
-    public boolean getBool() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader tastiera = new BufferedReader(input);
+    public double inputDouble() {
 
-        boolean err = false;
+        boolean error = false;
 
         do {
             try {
-                setBool(Boolean.valueOf(tastiera.readLine()));
-                err = false;
+                setDouble(Double.valueOf(tastiera.readLine()));
+                error = false;
             } catch (Exception e) {
-                System.out.println("errore");
-                err = true;
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
             }
-        } while (err);
+        } while (error);
 
-        return bool;
+        return reale;
+    }
+
+    //metodo double positivo
+    public double inputDoublePositivo() {
+
+        boolean error = false;
+
+        do {
+            try {
+                setDouble(Double.valueOf(tastiera.readLine()));
+                error = false;
+
+                if (reale < 0) {
+                    System.out.print("Errore | Numero negativo non valido.\nRiprova: ");
+                    error = true;
+                }
+            } catch (Exception e) {
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
+            }
+        } while (error);
+
+        return reale;
+    }
+
+    //metodo double negativo
+    public double inputDoubleNegativo() {
+
+        boolean error = false;
+
+        do {
+            try {
+                setDouble(Double.valueOf(tastiera.readLine()));
+                error = false;
+
+                if (reale > 0) {
+                    System.out.print("Errore | Numero positivo non valido.\nRiprova: ");
+                    error = true;
+                }
+            } catch (Exception e) {
+                System.out.print("Eccezione | Input non valido.\nRiprova: ");
+                error = true;
+            }
+        } while (error);
+
+        return reale;
     }
 }
