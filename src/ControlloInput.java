@@ -155,7 +155,7 @@ public class ControlloInput {
         }
 
         //giorno
-        if (giorno < 1 || giorno > 31) {
+        if (giorno < 1 || giorno > giornoMax) {
             System.out.println("Errore | Giorno non valido.\nRiprova:");
             giorno = inputInteroRange(1, giornoMax);
         }
