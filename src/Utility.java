@@ -29,26 +29,18 @@ public class Utility {
         System.out.println("\u001B[0m"); //sequenza ANSI per tornare al colore precedente
     }
 
-    //tasto continua
+    //premi un tasto per continuare
     static void tastoContinua() {
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader tastiera = new BufferedReader(input);
 
+        System.out.print("Premi invio per continuare...");
+
         try {
-            System.out.print("\nPremi invio per continuare...");
-            String continua = tastiera.readLine();
+            tastiera.readLine();
         } catch (Exception e) {
-            System.out.println("");
+            System.out.println("errore");
         }
-
-    }
-
-    //esci
-    public static boolean esci() {
-        boolean output = false;
-
-        System.out.println("Confermare l'uscita dal programma? [si - no]");
         
-        return output;
     }
 }
