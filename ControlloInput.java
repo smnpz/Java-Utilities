@@ -17,7 +17,7 @@ public class ControlloInput {
     }
 
     //metodo input stringa generica
-    public String inputStringa() {
+    public String Stringa() {
         
         boolean error = false;
 
@@ -35,7 +35,7 @@ public class ControlloInput {
     }
 
     //metodo input stringa letterale
-    public String inputStringaLetterale() {
+    public String StringaLetterale() {
 
         boolean error = false;
 
@@ -63,7 +63,7 @@ public class ControlloInput {
     }
 
     //metodo booleano scelta binaria (x y)
-    public String inputScelta(String x, String y) {
+    public String Scelta(String x, String y) {
 
         boolean error = false;
 
@@ -94,11 +94,8 @@ public class ControlloInput {
 
         String giornoStr = "", meseStr = "", annoStr = "";
 
-        Utility.pulisciSchermo();
-
         do {
-            System.out.println("inserire la data: gg/mm/aaaa");
-            String data = inputStringa();
+            String data = Stringa();
 
             // Dividi la stringa della data utilizzando i caratteri '/' o '-'
             String[] partiData = data.split("[./-]");
@@ -111,7 +108,7 @@ public class ControlloInput {
 
                     err = false;
                 } catch (Exception e) {
-                    System.out.println("Errore | Valori inseriti non numerici.\nRiprova:");
+                    System.out.print("Errore | Valori inseriti non numerici. [gg/mm/aaaa]\nRiprova:");
                     err = true;
                 }
                 
@@ -129,7 +126,7 @@ public class ControlloInput {
         //mese
         if (mese < 1 || mese > 12) {
             System.out.println("Errore | Mese non valido.\nRiprova: ");
-            mese = inputInteroRange(1, 12);
+            mese = InteroRange(1, 12);
 
             switch (mese) {
                 case 1:
@@ -157,7 +154,7 @@ public class ControlloInput {
         //giorno
         if (giorno < 1 || giorno > giornoMax) {
             System.out.println("Errore | Giorno non valido.\nRiprova:");
-            giorno = inputInteroRange(1, giornoMax);
+            giorno = InteroRange(1, giornoMax);
         }
 
         //padding
@@ -194,7 +191,7 @@ public class ControlloInput {
         this.intero = intero;
     }
 
-    public int inputIntero() {
+    public int Intero() {
 
         boolean error = false;
 
@@ -212,7 +209,7 @@ public class ControlloInput {
     }
 
     //metodo intero in un range
-    public int inputInteroRange(int min, int max) {
+    public int InteroRange(int min, int max) {
 
         boolean error = false;
 
@@ -235,7 +232,7 @@ public class ControlloInput {
     }
 
     //metodo numeri interi positivi
-    public int inputInteroPositivo() {
+    public int InteroPositivo() {
 
         boolean error = false;
 
@@ -258,7 +255,7 @@ public class ControlloInput {
     }
 
     //metodo numeri interi negativi
-    public int inputInteroNegativo() {
+    public int InteroNegativo() {
 
         boolean error = false;
 
@@ -303,7 +300,7 @@ public class ControlloInput {
     }
 
     //metodo double positivo
-    public double inputDoublePositivo() {
+    public double DoublePositivo() {
 
         boolean error = false;
 
@@ -326,7 +323,7 @@ public class ControlloInput {
     }
 
     //metodo double negativo
-    public double inputDoubleNegativo() {
+    public double DoubleNegativo() {
 
         boolean error = false;
 
