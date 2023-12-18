@@ -71,7 +71,7 @@ public class ControlloInput {
             try {
                 setStringa(tastiera.readLine());
 
-                if (!stringa.equals(x) || !stringa.equals(y)) error = false;
+                if (stringa.equals(x) || stringa.equals(y)) error = false;
                 else {
                     System.out.print("Errore | Scelta non contemplata [" + x + "/" + y + "].\nRiprova: ");
                     error = true;
