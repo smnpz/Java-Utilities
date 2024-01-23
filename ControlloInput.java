@@ -71,7 +71,7 @@ public class ControlloInput {
             try {
                 setStringa(tastiera.readLine());
 
-                if (!stringa.equals(x) || !stringa.equals(y)) error = false;
+                if (stringa.equals(x) || stringa.equals(y)) error = false;
                 else {
                     System.out.print("Errore | Scelta non contemplata [" + x + "/" + y + "].\nRiprova: ");
                     error = true;
@@ -184,6 +184,84 @@ public class ControlloInput {
 
         //creazione stringa di output
         return (giornoStr + "/" + meseStr + "/" + annoStr);
+    }
+
+    public String Email() {
+        boolean valid = false;
+        String frase = "";
+        do {
+            frase = Stringa();
+
+            String[] email = frase.split("[@]");
+
+            if (email.length == 2) {
+                
+                String[] dominio = email[1].split("[.]");
+
+                if (dominio.length == 2) {
+                    valid = true;
+                }
+            }
+
+            for (int i = 0; i < frase.length(); i++) {
+                //una email non puo contenere spazi
+                if (Character.isWhitespace(frase.charAt(i))) {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (!valid) System.out.print("Errore | Indirizzo email non valido.\nRiprova: ");
+
+        }while (!valid);
+
+        return frase;
+    }
+
+    public String Password() {
+
+        String frase = "";
+        
+        boolean valid = false;
+        do {
+            
+            boolean lunghezza = true;
+            boolean numero = false;
+            boolean maiuscola = false;
+            boolean minuscola = false;
+            boolean carattere = false;
+
+            frase = Stringa();
+
+            //escludo le stringhe troppo corte
+            if (frase.length() < 8) lunghezza = false;
+
+            for (int i = 0; i < frase.length(); i++) {
+                if (!lunghezza) break;
+
+                if (Character.isDigit(frase.charAt(i))) numero = true;
+                if (Character.isLetter(frase.charAt(i)) && Character.isLowerCase(frase.charAt(i))) minuscola = true;
+                if (Character.isLetter(frase.charAt(i)) && Character.isUpperCase(frase.charAt(i))) maiuscola = true;
+                
+                switch (frase.charAt(i)) {
+                    case '!', '?', ',' , '.', '-', '$': {
+                        carattere = true;
+                        break;
+                    }
+                }
+
+                if (lunghezza && numero && maiuscola && minuscola && carattere) {
+                    valid = true;
+                    break;
+                }
+            }
+
+            if (!valid) System.out.print("Errore | Password non sicura.\nRiprova: ");
+
+        }while (!valid);
+        
+
+        return frase;
     }
 
     // METODI per gli INTERI
