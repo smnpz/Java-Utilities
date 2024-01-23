@@ -225,7 +225,7 @@ public class ControlloInput {
         boolean valid = false;
         do {
             
-            boolean lunghezza = false;
+            boolean lunghezza = true;
             boolean numero = false;
             boolean maiuscola = false;
             boolean minuscola = false;
