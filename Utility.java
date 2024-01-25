@@ -34,7 +34,7 @@ public class Utility {
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader tastiera = new BufferedReader(input);
 
-        System.out.print("Premi invio per continuare...");
+        System.out.print("\nPremi invio per continuare...");
 
         try {
             tastiera.readLine();

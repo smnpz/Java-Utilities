@@ -127,27 +127,28 @@ public class ControlloInput {
         if (mese < 1 || mese > 12) {
             System.out.println("Errore | Mese non valido.\nRiprova: ");
             mese = InteroRange(1, 12);
+        }
 
-            switch (mese) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12: {
-                    giornoMax = 31;
-                    break;
-                }
-                case 2: {
-                    if (bisestile) giornoMax = 29;
-                    else giornoMax = 28;
-                    break;
-                }
-                default: {
-                    giornoMax = 30;
-                    break;
-                }
+        //switch mese
+        switch (mese) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12: {
+                giornoMax = 31;
+                break;
+            }
+            case 2: {
+                if (bisestile) giornoMax = 29;
+                else giornoMax = 28;
+                break;
+            }
+            default: {
+                giornoMax = 30;
+                break;
             }
         }
 
